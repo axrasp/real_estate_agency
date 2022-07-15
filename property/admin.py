@@ -4,6 +4,7 @@ from .models import Flat
 from .models import Complaint
 
 
+
 class AuthorAdmin(admin.ModelAdmin):
     search_fields = ('address', 'town', 'owner')
     readonly_fields = ['created_at']
