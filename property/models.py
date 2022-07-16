@@ -10,7 +10,8 @@ class Flat(models.Model):
         max_length=200)
     owner_pure_phone = PhoneNumberField(
         'Номер телефона',
-        blank=True)
+        blank=True,
+        null=True)
     owners_phonenumber = models.CharField(
         'Номер владельца',
         max_length=20)
