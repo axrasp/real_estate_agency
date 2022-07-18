@@ -95,11 +95,12 @@ class Owner (models.Model):
         null=True)
     owners_phonenumber = models.CharField(
         'Номер телефона',
-        max_length=20)
+        max_length=20,
+        db_index=True)
 
     flats = models.ManyToManyField(
         Flat,
-        verbose_name='Квартиры в собтвственности',
+        verbose_name='Квартиры в собственности',
         related_name='owners',
         blank=True,
         null=True)

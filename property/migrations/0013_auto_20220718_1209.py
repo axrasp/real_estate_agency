@@ -5,17 +5,20 @@ from django.db import migrations
 
 def add_flat_to_owners(apps, scheme_editor):
     Owner = apps.get_model('property', 'Owner')
-    Flat = apps.get_model('property', 'Owner')
+    Flat = apps.get_model('property', 'Flat')
     for flat in Flat.objects.all():
-        flat_owner = Owner.objects.get(name=flat.name)
-        flat_owner.add(flat)
+        print(flat)
+        flat_owner = Owner.objects.get(owners_phonenumber=flat.owners_phonenumber)
+        flat_owner.flats.add(flat)
         flat_owner.save()
+
 
 def clean_flats_in_owners(apps, scheme_editor):
     Owner = apps.get_model('property', 'Owner')
-    Flat = apps.get_model('property', 'Owner')
+    Flat = apps.get_model('property', 'Flat')
     for flat in Flat.objects.all():
-        flat_owner = Owner.objects.get(name=flat.name)
+        print(flat)
+        flat_owner = Owner.objects.get(name=flat.owner)
         flat_owner.flat = None
 
 
@@ -26,5 +29,5 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.RunPython(add_flat_to_owners, )
+        migrations.RunPython(add_flat_to_owners, clean_flats_in_owners)
     ]
