@@ -102,8 +102,7 @@ class Owner (models.Model):
         Flat,
         verbose_name='Квартиры в собственности',
         related_name='owners',
-        blank=True,
-        null=True)
+        blank=True)
 
     def __str__(self):
         return self.name
