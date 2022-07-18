@@ -7,7 +7,6 @@ def add_flat_to_owners(apps, scheme_editor):
     Owner = apps.get_model('property', 'Owner')
     Flat = apps.get_model('property', 'Flat')
     for flat in Flat.objects.all():
-        print(flat)
         flat_owner = Owner.objects.get(owners_phonenumber=flat.owners_phonenumber)
         flat_owner.flats.add(flat)
         flat_owner.save()
@@ -15,11 +14,8 @@ def add_flat_to_owners(apps, scheme_editor):
 
 def clean_flats_in_owners(apps, scheme_editor):
     Owner = apps.get_model('property', 'Owner')
-    Flat = apps.get_model('property', 'Flat')
-    for flat in Flat.objects.all():
-        print(flat)
-        flat_owner = Owner.objects.get(name=flat.owner)
-        flat_owner.flat = None
+    for owner in Owner.objects.all():
+        owner.flats.through.objects.all()
 
 
 class Migration(migrations.Migration):
