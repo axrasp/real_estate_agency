@@ -12,13 +12,11 @@ class OwnerFlatsInstanceInline(admin.TabularInline):
 class AuthorAdmin(admin.ModelAdmin):
     search_fields = ('address',
                      'town',
-                     'owner',
                      'pk')
     readonly_fields = ['created_at']
     list_display = ('address', 'price',
                     'new_building',
                     'construction_year',
-                    'owner_pure_phone',
                     'town')
     list_editable = ['new_building']
     list_filter = ('new_building',
