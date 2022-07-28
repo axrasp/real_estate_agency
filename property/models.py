@@ -64,7 +64,7 @@ class Flat(models.Model):
 class Complaint(models.Model):
     from_user = models.ForeignKey(User, on_delete=models.CASCADE,
                                   verbose_name='Кто пожаловался',
-                                  related_name='users')
+                                  related_name='user_complaints')
     flat = models.ForeignKey(Flat, on_delete=models.CASCADE,
                              verbose_name='На какую квартиру жалоба',
                              related_name='complaints')
