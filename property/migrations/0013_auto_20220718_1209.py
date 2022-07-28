@@ -6,7 +6,7 @@ from django.db import migrations
 def add_flat_to_owners(apps, scheme_editor):
     Owner = apps.get_model('property', 'Owner')
     Flat = apps.get_model('property', 'Flat')
-    for flat in Flat.objects.all():
+    for flat in Flat.objects.all().iterator():
         flat_owner = Owner.objects.get(owners_phonenumber=flat.owners_phonenumber)
         flat_owner.flats.add(flat)
         flat_owner.save()
@@ -14,8 +14,8 @@ def add_flat_to_owners(apps, scheme_editor):
 
 def clean_flats_in_owners(apps, scheme_editor):
     Owner = apps.get_model('property', 'Owner')
-    for owner in Owner.objects.all():
-        owner.flats.through.objects.all()
+    for owner in Owner.objects.all().iterator():
+        owner.flats.through.objects.all().delete()
 
 
 class Migration(migrations.Migration):

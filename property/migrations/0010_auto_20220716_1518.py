@@ -7,7 +7,7 @@ from django.db import migrations
 
 def normalize_phonenumber(apps, schema_editor):
     Flat = apps.get_model('property', 'Flat')
-    for flat in Flat.objects.all():
+    for flat in Flat.objects.all().iterator():
         phone = flat.owners_phonenumber
         phone_cleaned = re.sub('[)/(/ /-]', '', phone)
         if phone_cleaned[0] == '8':
@@ -22,7 +22,7 @@ def normalize_phonenumber(apps, schema_editor):
 
 def clean_phonenumber(apps, schema_editor):
     Flat = apps.get_model('property', 'Flat')
-    for flat in Flat.objects.all():
+    for flat in Flat.objects.all().iterator():
         flat.owner_pure_phone = None
         flat.save()
 
