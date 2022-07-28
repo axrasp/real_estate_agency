@@ -9,7 +9,6 @@ class Flat(models.Model):
         'Когда создано объявление',
         default=timezone.now,
         db_index=True)
-
     description = models.TextField(
         'Текст объявления',
         blank=True)
@@ -70,8 +69,7 @@ class Complaint(models.Model):
                              related_name='complaints')
     text = models.TextField(
         'Текст жалобы',
-        blank=True,
-        null=True
+        blank=True
     )
 
 
