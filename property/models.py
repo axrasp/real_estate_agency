@@ -39,8 +39,12 @@ class Flat(models.Model):
         null=True,
         blank=True,
         db_index=True)
-    has_balcony = models.NullBooleanField('Наличие балкона', db_index=True)
-    active = models.BooleanField('Активно-ли объявление', db_index=True)
+    has_balcony = models.NullBooleanField(
+        'Наличие балкона',
+        db_index=True)
+    active = models.BooleanField(
+        'Активно-ли объявление',
+        db_index=True)
     construction_year = models.IntegerField(
         'Год постройки здания',
         null=True,
@@ -61,12 +65,16 @@ class Flat(models.Model):
 
 
 class Complaint(models.Model):
-    from_user = models.ForeignKey(User, on_delete=models.CASCADE,
-                                  verbose_name='Кто пожаловался',
-                                  related_name='user_complaints')
-    flat = models.ForeignKey(Flat, on_delete=models.CASCADE,
-                             verbose_name='На какую квартиру жалоба',
-                             related_name='complaints')
+    from_user = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE,
+        verbose_name='Кто пожаловался',
+        related_name='user_complaints')
+    flat = models.ForeignKey(
+        Flat,
+        on_delete=models.CASCADE,
+        verbose_name='На какую квартиру жалоба',
+        related_name='complaints')
     text = models.TextField(
         'Текст жалобы',
         blank=True
